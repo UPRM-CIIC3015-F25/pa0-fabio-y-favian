@@ -9,7 +9,7 @@ Completed Task 4: Add your name - 9bdaf97462529336bbfae36607b4c45d21ceabfb
 
 Completed Task 5: Create a Merge Conflict and Resolve It Teammate A part - 402c9bf3e1acfe3655e0b1e21f134119ac23ca77
 
-Completed Bonus Task: Keep a high score - 
+Completed Bonus Task: Keep a high score - 65e3bfae29d5342830ad81bfb91657c31ba48187
 
 Favian:
 
