@@ -1,5 +1,16 @@
 import pygame, sys, random
 
+def load_high_score():
+    try:
+        with open("HighScore.txt", "r") as f:
+            return int(f.read())
+    except FileNotFoundError:
+        return 0  # If file doesn’t exist, start at 0
+
+def save_high_score(high_score):
+    with open("HighScore.txt", "w") as f:
+        f.write(str(high_score))
+
 def ball_movement():
     """
     Handles the movement of the ball and collision detection with the player and screen boundaries.
@@ -23,6 +34,10 @@ def ball_movement():
         if abs(ball.bottom - player.top) < 10:  # Check if ball hits the top of the paddle
             # TODO Task 2: Fix score to increase by 1
             score += 1  # Increase player score
+            global high_score
+            if score > high_score:
+                high_score = score
+                save_high_score(high_score)
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
             pygame.mixer.Sound('Recording1.wav').play()
@@ -88,6 +103,8 @@ player_speed = 0
 
 # Score Text setup
 score = 0
+high_score = load_high_score() # Tracking the high score
+
 basic_font = pygame.font.Font('freesansbold.ttf', 32)  # Font for displaying score
 
 start = False  # Indicates if the game has started
@@ -126,8 +143,10 @@ while True:
     pygame.draw.rect(screen, light_grey, player)  # Draw player paddle
     # TODO Task 3: Change the Ball Color
     pygame.draw.ellipse(screen, light_pink, ball)  # Draw ball
-    player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
-    screen.blit(player_text, (screen_width/2 - 15, 10))  # Display score on screen
+    player_text = basic_font.render(f'{score}', False, light_grey) # Render player score
+    screen.blit(player_text, (screen_width/2 - 15, 35))  # Display score on screen
+    high_score_text = basic_font.render(f'High Score: {high_score}', False, light_grey) # Render high score
+    screen.blit(high_score_text, (5, 5))  # Display high score on top-left corner
 
     # Update display
     pygame.display.flip()
