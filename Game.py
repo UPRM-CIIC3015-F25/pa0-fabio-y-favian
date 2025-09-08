@@ -40,9 +40,9 @@ def ball_movement():
                 save_high_score(high_score)
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
-            pygame.mixer.Sound('Recording1.wav').play()
+            pygame.mixer.Sound('Recording1.wav').play().set_volume(0.25)
 
-    # Ball collision with top boundary
+            # Ball collision with top boundary
     if ball.top <= 0:
         ball_speed_y *= -1  # Reverse ball's vertical direction
 
@@ -101,6 +101,9 @@ wallpaper = pygame.transform.scale(wallpaper, (screen_width, screen_height))
 
 tennis = pygame.image.load("tennis_ball.png").convert_alpha()
 tennis = pygame.transform.scale(tennis, (70, 70))
+
+pygame.mixer.music.load("pvz.mp3")
+pygame.mixer.music.play(-1)
 
 # Game Variables
 ball_speed_x = 0
