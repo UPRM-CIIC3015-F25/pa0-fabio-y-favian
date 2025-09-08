@@ -20,3 +20,7 @@ Completed Task 4: Add your name - e2c5d70382b61e584e2e0762094fd233618c1df0
 Completed Task 5: Create a Merge Conflict and Resolve It (Teammate B part) - 1a9706844a41f10cf0ebad481e2ca2a4a05f2328
 
 Completed Task 6: Add sound effects - 6170952399157d5b7759091a005d2edeec06034f
+
+Completed Bonus Task: Add Images - 80f93aa725f93c35b3d4d742811df262cb6e04e4
+
+Completed Bonus Task: Add Music - 
