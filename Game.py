@@ -96,6 +96,12 @@ player_height = 15
 player_width = 200
 player = pygame.Rect(screen_width/2 - 45, screen_height - 20, player_width, player_height)  # Player paddle
 
+wallpaper = pygame.image.load("background.jpg").convert()
+wallpaper = pygame.transform.scale(wallpaper, (screen_width, screen_height))
+
+tennis = pygame.image.load("tennis_ball.png").convert_alpha()
+tennis = pygame.transform.scale(tennis, (70, 70))
+
 # Game Variables
 ball_speed_x = 0
 ball_speed_y = 0
@@ -139,14 +145,13 @@ while True:
     light_grey = pygame.Color('grey83')
     light_pink = pygame.Color('lightpink2')
     red = pygame.Color('red')
-    screen.fill(bg_color)  # Clear screen with background color
+    screen.blit(wallpaper, (0, 0))
     pygame.draw.rect(screen, light_grey, player)  # Draw player paddle
-    # TODO Task 3: Change the Ball Color
-    pygame.draw.ellipse(screen, light_pink, ball)  # Draw ball
-    player_text = basic_font.render(f'{score}', False, light_grey) # Render player score
-    screen.blit(player_text, (screen_width/2 - 15, 35))  # Display score on screen
-    high_score_text = basic_font.render(f'High Score: {high_score}', False, light_grey) # Render high score
-    screen.blit(high_score_text, (5, 5))  # Display high score on top-left corner
+    screen.blit(tennis, ball)
+    player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
+    screen.blit(player_text, (screen_width / 2 - 15, 35))  # Display score on screen
+    high_score_text = basic_font.render(f'High Score: {high_score}', False, light_grey)  # Render high score
+    screen.blit(high_score_text, (5, 5))
 
     # Update display
     pygame.display.flip()
