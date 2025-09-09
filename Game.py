@@ -74,6 +74,8 @@ def restart():
     ball.center = (screen_width / 2, screen_height / 2)  # Reset ball position to center
     ball_speed_y, ball_speed_x = 0, 0  # Stop ball movement
     score = 0  # Reset player score
+    global in_session
+    in_session = True
 
 # General setup
 pygame.mixer.pre_init(44100, -16, 1, 1024)
@@ -119,6 +121,9 @@ basic_font = pygame.font.Font('freesansbold.ttf', 32)  # Font for displaying sco
 start = False  # Indicates if the game has started
 
 # Main game loop
+
+in_session = True
+
 while True:
     # Event handling
     # TODO Task 4: Add your name
@@ -132,8 +137,9 @@ while True:
                 player_speed -= 6  # Move paddle left
             if event.key == pygame.K_RIGHT:
                 player_speed += 6  # Move paddle right
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE and in_session:
                 start = True  # Start the ball movement
+                in_session = False  # Disables spacebar after first press
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 player_speed += 6  # Stop moving left
