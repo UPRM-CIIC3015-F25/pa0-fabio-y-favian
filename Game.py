@@ -11,11 +11,17 @@ def save_high_score(high_score):
     with open("HighScore.txt", "w") as f:
         f.write(str(high_score))
 
+level = 1  # Current level
+level_up_score = 5  # Every 5 points, increase level
+speed_multiplier = 1.1  # How much speed increases each level
+
+
 def ball_movement():
     """
     Handles the movement of the ball and collision detection with the player and screen boundaries.
     """
-    global ball_speed_x, ball_speed_y, score, start
+
+    global ball_speed_x, ball_speed_y, score, start, speed, level
 
     # Move the ball
     ball.x += ball_speed_x
@@ -38,6 +44,11 @@ def ball_movement():
             if score > high_score:
                 high_score = score
                 save_high_score(high_score)
+                # Check if we need to increase the level
+            if score % level_up_score == 0:
+                    level += 1
+                    ball_speed_x *= speed_multiplier
+                    ball_speed_y *= speed_multiplier
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
             pygame.mixer.Sound('Recording1.wav').play().set_volume(0.25)
@@ -70,11 +81,11 @@ def restart():
     """
     Resets the ball and player scores to the initial state.
     """
-    global ball_speed_x, ball_speed_y, score
+    global ball_speed_x, ball_speed_y, score, in_session, level
     ball.center = (screen_width / 2, screen_height / 2)  # Reset ball position to center
     ball_speed_y, ball_speed_x = 0, 0  # Stop ball movement
     score = 0  # Reset player score
-    global in_session
+    level = 1
     in_session = True
 
 # General setup
@@ -160,7 +171,9 @@ while True:
     player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
     screen.blit(player_text, (screen_width / 2 - 15, 35))  # Display score on screen
     high_score_text = basic_font.render(f'High Score: {high_score}', False, light_grey)  # Render high score
-    screen.blit(high_score_text, (5, 5))
+    screen.blit(high_score_text, (5, 5))    # Display high score
+    level_text = basic_font.render(f'Level: {level}', False, light_grey)
+    screen.blit(level_text, (screen_width - 130, 5))
 
     # Update display
     pygame.display.flip()

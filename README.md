@@ -11,6 +11,12 @@ Completed Task 5: Create a Merge Conflict and Resolve It Teammate A part - 402c9
 
 Completed Bonus Task: Keep a high score - 65e3bfae29d5342830ad81bfb91657c31ba48187
 
+Fixed ball Speed - 39f945dbff1e537948d005002744d3778d8225d6
+
+Fixed Flying Spacebar Ball Bug - e6caea95173cab39cb440c2e546a17bb4631939e
+
+Completed Bonus Task: Add levels - 
+
 Favian:
 
 Completed Task 2: Fix the Scoring Functionality - e3f5e43a316f234c316489a526ae8291f7d462f0
